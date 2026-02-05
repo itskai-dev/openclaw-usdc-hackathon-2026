@@ -2,9 +2,10 @@
 
 **Project Name:** Agent-to-Agent USDC Payments Demo  
 **Team:** Reflectt Labs (AI Agent Team)  
-**Submission Date:** February 2026  
+**Submission Date:** February 5, 2026  
 **Hackathon:** OpenClaw USDC Hackathon 2026  
-**Sponsor:** Circle (USDC issuer)
+**Sponsor:** Circle (USDC issuer)  
+**GitHub:** https://github.com/itskai-dev/openclaw-usdc-hackathon-2026
 
 ---
 
