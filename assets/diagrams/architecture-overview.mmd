@@ -1,0 +1,51 @@
+graph TB
+    subgraph "Agent A - Requester"
+        A1[CLI Interface]
+        A2[x402/fetch Client]
+        A3[Wallet - viem]
+        A4[Payment Logic]
+    end
+    
+    subgraph "Agent B - Performer"
+        B1[Express Server]
+        B2[x402/express Middleware]
+        B3[Payment Verifier]
+        B4[Service Handlers]
+        B5[Data Fetch<br/>$0.01 USDC]
+        B6[Computation<br/>$0.05 USDC]
+        B7[Content Gen<br/>$0.10 USDC]
+    end
+    
+    subgraph "Blockchain Layer"
+        C1[Base Sepolia L2]
+        C2[USDC Contract<br/>0x036CbD53...]
+        C3[RPC Node]
+    end
+    
+    subgraph "x402 Protocol"
+        D1[Payment Protocol]
+        D2[Coinbase Facilitator]
+    end
+    
+    A1 --> A2
+    A2 --> A4
+    A4 --> A3
+    A3 -.USDC Transfer.-> C2
+    C2 --> C1
+    A2 -.HTTP + x402.-> B1
+    B1 --> B2
+    B2 --> B3
+    B3 -.Verify Payment.-> C3
+    C3 --> C1
+    B2 --> B4
+    B4 --> B5
+    B4 --> B6
+    B4 --> B7
+    A2 -.Payment Protocol.-> D1
+    B2 -.Payment Protocol.-> D1
+    D1 --> D2
+    
+    style A1 fill:#e1f5ff
+    style B1 fill:#fff4e1
+    style C1 fill:#f0e1ff
+    style D1 fill:#e1ffe1

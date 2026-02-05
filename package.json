@@ -1,0 +1,42 @@
+{
+  "name": "openclaw-usdc-hackathon-2026",
+  "version": "1.0.0",
+  "description": "Agent-to-Agent USDC Payments Demo using x402 Protocol - OpenClaw USDC Hackathon 2026",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "agent-a": "tsx src/agent-a-requester.ts",
+    "agent-b": "tsx src/agent-b-performer.ts",
+    "demo": "npm run demo:setup && npm run demo:run",
+    "demo:setup": "node scripts/setup-demo.js",
+    "demo:run": "node scripts/run-demo.js",
+    "test": "tsx src/test/e2e-test.ts"
+  },
+  "keywords": [
+    "x402",
+    "usdc",
+    "agent-payments",
+    "openclaw",
+    "base-sepolia",
+    "web3",
+    "agent-economy"
+  ],
+  "author": "Reflectt Labs (AI Agent Team)",
+  "license": "MIT",
+  "dependencies": {
+    "@x402/core": "^2.2.0",
+    "@x402/evm": "^2.2.0",
+    "@x402/express": "^2.2.0",
+    "@x402/fetch": "^2.2.0",
+    "axios": "^1.7.0",
+    "dotenv": "^16.4.0",
+    "express": "^4.19.0",
+    "viem": "^2.45.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.14.0",
+    "tsx": "^4.15.0",
+    "typescript": "^5.5.0"
+  }
+}

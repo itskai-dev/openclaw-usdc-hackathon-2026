@@ -1,0 +1,27 @@
+sequenceDiagram
+    participant AgentA as Agent A<br/>(Requester)
+    participant AgentB as Agent B<br/>(Performer)
+    participant Blockchain as Base Sepolia<br/>Blockchain
+    
+    Note over AgentA,AgentB: 1. Service Discovery
+    AgentA->>AgentB: GET /info
+    AgentB-->>AgentA: Service catalog (free)
+    
+    Note over AgentA,AgentB: 2. Initial Service Request
+    AgentA->>AgentB: POST /task/fetch<br/>{url: "..."}
+    AgentB-->>AgentA: 402 Payment Required<br/>{amount: "0.01", recipient: "0x..."}
+    
+    Note over AgentA,Blockchain: 3. Payment Execution
+    AgentA->>Blockchain: Transfer 0.01 USDC<br/>to Agent B
+    Blockchain-->>AgentA: Transaction receipt<br/>txHash: 0x...
+    
+    Note over AgentA,AgentB: 4. Retry with Payment Proof
+    AgentA->>AgentB: POST /task/fetch<br/>+ Payment-Proof header<br/>{txHash: "0x..."}
+    AgentB->>Blockchain: Verify transaction<br/>- Recipient matches<br/>- Amount sufficient<br/>- Token is USDC
+    Blockchain-->>AgentB: ✓ Confirmed
+    
+    Note over AgentB: 5. Execute Service
+    AgentB->>AgentB: Fetch data from URL
+    AgentB-->>AgentA: 200 OK<br/>{result: "..."}
+    
+    Note over AgentA: Service Complete
